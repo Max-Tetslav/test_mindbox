@@ -1,5 +1,8 @@
-import { SyntheticEvent, useMemo, useState } from 'react';
-import { DEFAULT_TODO_TYPE, TODO_TYPES, TodoList, TodoType } from '../entities/todos';
+import { useMemo, useState } from 'react';
+import { DEFAULT_TODO_TYPE, TODO_TYPES } from '../entities/todos';
+
+import type { SyntheticEvent } from 'react';
+import type { TodoList, TodoType } from '../entities/todos';
 
 interface UseFilterTodosProps {
     todoList: TodoList;

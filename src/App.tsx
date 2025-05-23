@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { Container, Typography, TextField, Button, Stack, Divider, Tabs, Tab, Box } from '@mui/material';
-import { TODO_INPUT_PLACEHOLDER, TODO_TYPES, TodoList as TodoListType } from './entities/todos';
+import { TODO_INPUT_PLACEHOLDER, TODO_TYPES } from './entities/todos';
+import type { TodoList as TodoListType } from './entities/todos';
 import { useFilterTodos } from './hooks/useFilterTodos';
 import TodoList from './TodoList';
 

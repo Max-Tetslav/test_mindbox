@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { List, ListItem, ListItemText, Checkbox, FormControlLabel, Typography } from '@mui/material';
-import { TodoList as TodoListType } from './entities/todos';
+import type { TodoList as TodoListType } from './entities/todos';
 
 type TodoListProps = {
     todos: TodoListType;
