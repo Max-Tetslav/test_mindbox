@@ -4,7 +4,7 @@
 
 ## 🌐 Деплой
 
-[Live Demo на GitHub Pages](https://pages.github.com/)
+[Live Demo на GitHub Pages](https://max-tetslav.github.io/test_mindbox/)
 
 ## 📦 Stack
 
