@@ -29,7 +29,7 @@ describe(TextInput, () => {
         expect(getByLabelText(TODO_INPUT_PLACEHOLDER)).toBeInTheDocument();
     });
 
-    it('вводит текст и вызывает onAddTodo при нажатии Enter', async () => {
+    it('Вводит текст и вызывает onAddTodo при нажатии Enter', async () => {
         const { getByRole, fakeFn, user } = setupTest();
 
         const inputText = 'Устроиться на работу в mindbox';
@@ -42,7 +42,7 @@ describe(TextInput, () => {
         expect(input.value).toBe('');
     });
 
-    it('не вызывает onAddTodo при нажатии Enter, если поле пустое', async () => {
+    it('Не вызывает onAddTodo при нажатии Enter, если поле пустое', async () => {
         const { getByRole, fakeFn, user } = setupTest();
 
         const input = getByRole('textbox');
@@ -51,7 +51,7 @@ describe(TextInput, () => {
         expect(fakeFn).not.toHaveBeenCalled();
     });
 
-    it('не вызывает onAddTodo, если введена строка только из пробелов', async () => {
+    it('Не вызывает onAddTodo, если введена строка только из пробелов', async () => {
         const { getByRole, fakeFn, user } = setupTest();
 
         const input = getByRole('textbox');

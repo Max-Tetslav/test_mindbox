@@ -28,7 +28,7 @@ describe(ClearButton, () => {
         expect(getByRole('button')).toBeDisabled();
     });
 
-    it('вызывает onClick', () => {
+    it('Вызывает onClick', () => {
         const { getByRole, fakeFn } = setupTest();
 
         fireEvent.click(getByRole('button'));
@@ -36,7 +36,7 @@ describe(ClearButton, () => {
         expect(fakeFn).toHaveBeenCalledTimes(1);
     });
 
-    it('не вызывает onClick, если кнопка disabled', () => {
+    it('Не вызывает onClick, если кнопка disabled', () => {
         const { getByRole, fakeFn } = setupTest(true);
 
         fireEvent.click(getByRole('button'));
