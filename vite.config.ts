@@ -7,9 +7,10 @@ export default defineConfig({
     base: '/test_mindbox/',
     resolve: {
         alias: {
-            '@Components': path.resolve(__dirname, 'src/components'),
-            '@Entities': path.resolve(__dirname, 'src/entities'),
-            '@Hooks': path.resolve(__dirname, 'src/hooks')
+            '@components': path.resolve(__dirname, 'src/components'),
+            '@entities': path.resolve(__dirname, 'src/entities'),
+            '@hooks': path.resolve(__dirname, 'src/hooks'),
+            '@utils': path.resolve(__dirname, 'src/utils')
         }
     },
     test: {
