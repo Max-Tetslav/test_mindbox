@@ -8,7 +8,7 @@ import { TODO_TYPES } from '@entities/todos';
 import { useFilterTodos } from '@hooks/useFilterTodos';
 import { useTodos } from '@hooks/useTodos';
 
-const App: React.FC = () => {
+const App = () => {
     const { currentFilter, handleFilterChange } = useFilterTodos();
     const { filteredTodos, isClearButtonDisabled, handleCreateTodo, handleToggleTodo, handleClearCompletedTodos } =
         useTodos({ currentFilter });
