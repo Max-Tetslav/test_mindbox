@@ -5,7 +5,7 @@ import type { Todos } from '@entities/todos';
 
 type TodoListProps = {
     todos: Todos;
-    onToggle: (id: number) => () => void;
+    onToggle: (todoId: number) => () => void;
 };
 
 const TodoList = memo(({ todos, onToggle }: TodoListProps) => {

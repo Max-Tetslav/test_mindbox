@@ -1,40 +1,21 @@
-import React, { useCallback, useState } from 'react';
 import { Container, Typography, Stack, Tabs, Tab, Box } from '@mui/material';
 
 import ClearButton from '@components/ClearButton';
 import TodoList from '@components/TodoList';
 import Divider from '@components/Divider';
 import TextInput from '@components/TextInput';
-import type { Todos } from '@entities/todos';
 import { TODO_TYPES } from '@entities/todos';
 import { useFilterTodos } from '@hooks/useFilterTodos';
-import { createId } from '@utils/createId';
+import { useTodos } from '@hooks/useTodos';
 
 const App: React.FC = () => {
-    const [todos, setTodos] = useState<Todos>([]);
-    const { currentFilter, filteredTodos, handleFilterChange } = useFilterTodos({ todoList: todos });
-
-    const handleToggleTodo = useCallback(
-        (id: number) => () => {
-            setTodos((todos) => todos.map((todo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo)));
-        },
-        []
-    );
-
-    const clearCompletedTodos = useCallback(() => {
-        setTodos((todos) => todos.filter((todo) => !todo.completed));
-    }, []);
+    const { currentFilter, handleFilterChange } = useFilterTodos();
+    const { filteredTodos, isClearButtonDisabled, handleCreateTodo, handleToggleTodo, handleClearCompletedTodos } =
+        useTodos({ currentFilter });
 
     const itemsCountText = `${filteredTodos.length} items ${currentFilter !== TODO_TYPES.ALL ? currentFilter : 'left'}`;
 
     const isClearButtonVisible = currentFilter !== TODO_TYPES.ACTIVE;
-    const isClearButtonDisabled = !todos.some((item) => item.completed);
-
-    const isCompletedFilterSelected = currentFilter === TODO_TYPES.COMPLETED;
-
-    const handleCreateTodo = (todoText: string) => {
-        setTodos((todos) => [...todos, { id: createId(), text: todoText, completed: isCompletedFilterSelected }]);
-    };
 
     return (
         <Container
@@ -75,7 +56,7 @@ const App: React.FC = () => {
             <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
                 <Typography color="text.secondary">{itemsCountText}</Typography>
                 {isClearButtonVisible && (
-                    <ClearButton isDisabled={isClearButtonDisabled} onClick={clearCompletedTodos} />
+                    <ClearButton isDisabled={isClearButtonDisabled} onClick={handleClearCompletedTodos} />
                 )}
             </Stack>
         </Container>
