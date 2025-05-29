@@ -2,6 +2,7 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { TODO_INPUT_PLACEHOLDER } from '@entities/todos';
+import { fakeCompletedTodo } from '@utils/__mocks__/todo';
 
 import TextInput from './';
 
@@ -32,13 +33,11 @@ describe(TextInput, () => {
     it('Вводит текст и вызывает onAddTodo при нажатии Enter', async () => {
         const { getByRole, fakeFn, user } = setupTest();
 
-        const inputText = 'Устроиться на работу в mindbox';
-
         const input = getByRole('textbox') as HTMLInputElement;
-        await user.type(input, `${inputText}{enter}`);
+        await user.type(input, `${fakeCompletedTodo.text}{enter}`);
 
         expect(fakeFn).toHaveBeenCalledTimes(1);
-        expect(fakeFn).toHaveBeenCalledWith(inputText);
+        expect(fakeFn).toHaveBeenCalledWith(fakeCompletedTodo.text);
         expect(input.value).toBe('');
     });
 
