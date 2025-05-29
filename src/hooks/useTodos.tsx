@@ -4,11 +4,11 @@ import { TODO_TYPES } from '../entities/todos';
 import type { Todos, TodoType } from '@entities/todos';
 import { createId } from '@utils/createId';
 
-interface UseFilterTodosProps {
+interface UseTodosProps {
     currentFilter: TodoType;
 }
 
-interface UseFilterTodosResult {
+interface UseTodosResult {
     filteredTodos: Todos;
     isClearButtonDisabled: boolean;
     handleClearCompletedTodos: VoidFunction;
@@ -16,7 +16,7 @@ interface UseFilterTodosResult {
     handleToggleTodo: (todoId: number) => () => void;
 }
 
-export const useTodos = ({ currentFilter }: UseFilterTodosProps): UseFilterTodosResult => {
+export const useTodos = ({ currentFilter }: UseTodosProps): UseTodosResult => {
     const [todos, setTodos] = useState<Todos>([]);
 
     const isClearButtonDisabled = !todos.some((item) => item.completed);
