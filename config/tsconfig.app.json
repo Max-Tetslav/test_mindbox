@@ -10,6 +10,14 @@
         "module": "ESNext",
         "skipLibCheck": true,
 
+        // Aliases
+        "baseUrl": "../",
+        "paths": {
+            "@Components/*": ["src/components/*"],
+            "@Entities/*": ["src/entities/*"],
+            "@Hooks/*": ["src/hooks/*"]
+        },
+
         /* Bundler mode */
         "moduleResolution": "bundler",
         "allowImportingTsExtensions": true,

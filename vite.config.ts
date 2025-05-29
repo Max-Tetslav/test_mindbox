@@ -1,7 +1,15 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
     plugins: [react()],
-    base: '/test_mindbox/'
+    base: '/test_mindbox/',
+    resolve: {
+        alias: {
+            '@Components': path.resolve(__dirname, 'src/components'),
+            '@Entities': path.resolve(__dirname, 'src/entities'),
+            '@Hooks': path.resolve(__dirname, 'src/hooks')
+        }
+    }
 });
