@@ -1,6 +1,7 @@
 import { memo, useCallback, useState, type ChangeEvent } from 'react';
 import { TextField } from '@mui/material';
-import { TODO_INPUT_PLACEHOLDER } from '@Entities/todos';
+
+import { TODO_INPUT_PLACEHOLDER } from '@entities/todos';
 
 type TextInputProps = {
     onAddTodo: (todoText: string) => void;

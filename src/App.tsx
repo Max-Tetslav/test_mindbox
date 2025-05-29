@@ -1,16 +1,17 @@
 import React, { useCallback, useState } from 'react';
 import { Container, Typography, Stack, Tabs, Tab, Box } from '@mui/material';
-import { TODO_TYPES } from '@Entities/todos';
-import type { TodoList as TodoListType } from '@Entities/todos';
-import { useFilterTodos } from '@Hooks/useFilterTodos';
-import ClearButton from '@Components/ClearButton';
-import TodoList from '@Components/TodoList';
-import Divider from '@Components/Divider';
-import TextInput from '@Components/TextInput';
-import { createId } from './utils/createId';
+
+import ClearButton from '@components/ClearButton';
+import TodoList from '@components/TodoList';
+import Divider from '@components/Divider';
+import TextInput from '@components/TextInput';
+import type { Todos } from '@entities/todos';
+import { TODO_TYPES } from '@entities/todos';
+import { useFilterTodos } from '@hooks/useFilterTodos';
+import { createId } from '@utils/createId';
 
 const App: React.FC = () => {
-    const [todos, setTodos] = useState<TodoListType>([]);
+    const [todos, setTodos] = useState<Todos>([]);
     const { currentFilter, filteredTodos, handleFilterChange } = useFilterTodos({ todoList: todos });
 
     const handleToggleTodo = useCallback(

@@ -1,10 +1,10 @@
-import { renderHook, act } from '@testing-library/react';
 import type { SyntheticEvent } from 'react';
+import { renderHook, act } from '@testing-library/react';
 
-import { TODO_TYPES, DEFAULT_TODO_TYPE } from '@Entities/todos';
+import { TODO_TYPES, DEFAULT_TODO_TYPE } from '@entities/todos';
+import { fakeCompletedTodo, fakeIncompletedTodos, fakeTodoList } from '@utils/__mocks__/todo';
 
 import { useFilterTodos } from '../useFilterTodos';
-import { fakeCompletedTodo, fakeIncompletedTodos, fakeTodoList } from '../__mocks__/todo';
 
 const setupTest = () => {
     const { result } = renderHook(() => useFilterTodos({ todoList: fakeTodoList }));

@@ -1,16 +1,16 @@
 import { useMemo, useState } from 'react';
-import { DEFAULT_TODO_TYPE, TODO_TYPES } from '../entities/todos';
-
 import type { SyntheticEvent } from 'react';
-import type { TodoList, TodoType } from '../entities/todos';
+
+import type { Todos, TodoType } from '@entities/todos';
+import { DEFAULT_TODO_TYPE, TODO_TYPES } from '@entities/todos';
 
 interface UseFilterTodosProps {
-    todoList: TodoList;
+    todoList: Todos;
 }
 
 interface UseFilterTodosResult {
     currentFilter: TodoType;
-    filteredTodos: TodoList;
+    filteredTodos: Todos;
     handleFilterChange: (_: SyntheticEvent, value: TodoType) => void;
 }
 

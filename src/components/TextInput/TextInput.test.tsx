@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { TODO_INPUT_PLACEHOLDER } from '@Entities/todos';
+import { TODO_INPUT_PLACEHOLDER } from '@entities/todos';
 
 import TextInput from './';
 

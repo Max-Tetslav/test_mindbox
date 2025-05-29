@@ -1,4 +1,4 @@
-import type { Todo, TodoList } from '@Entities/todos';
+import type { Todo, Todos } from '@entities/todos';
 
 export const fakeIncompletedTodos: Todo[] = [
     { id: 1, text: 'Task 1', completed: false },
@@ -6,4 +6,4 @@ export const fakeIncompletedTodos: Todo[] = [
 ];
 export const fakeCompletedTodo: Todo = { id: 3, text: 'Task 3', completed: true };
 
-export const fakeTodoList: TodoList = [...fakeIncompletedTodos, fakeCompletedTodo];
+export const fakeTodoList: Todos = [...fakeIncompletedTodos, fakeCompletedTodo];

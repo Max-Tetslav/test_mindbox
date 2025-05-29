@@ -1,9 +1,10 @@
 import { memo } from 'react';
 import { List, ListItem, ListItemText, Checkbox, FormControlLabel, Typography } from '@mui/material';
-import type { TodoList as TodoListType } from '@Entities/todos';
+
+import type { Todos } from '@entities/todos';
 
 type TodoListProps = {
-    todos: TodoListType;
+    todos: Todos;
     onToggle: (id: number) => () => void;
 };
 
