@@ -1,27 +1,19 @@
 import React, { useCallback, useState } from 'react';
-import { Container, Typography, TextField, Button, Stack, Divider, Tabs, Tab, Box } from '@mui/material';
-import { TODO_INPUT_PLACEHOLDER, TODO_TYPES } from './entities/todos';
-import type { TodoList as TodoListType } from './entities/todos';
-import { useFilterTodos } from './hooks/useFilterTodos';
-import TodoList from './TodoList';
+import { Container, Typography, Stack, Tabs, Tab, Box } from '@mui/material';
+import { TODO_TYPES } from '@Entities/todos';
+import type { TodoList as TodoListType } from '@Entities/todos';
+import { useFilterTodos } from '@Hooks/useFilterTodos';
+import ClearButton from '@Components/ClearButton';
+import TodoList from '@Components/TodoList';
+import Divider from '@Components/Divider';
+import TextInput from '@Components/TextInput';
+import { createId } from './utils/createId';
 
 const App: React.FC = () => {
     const [todos, setTodos] = useState<TodoListType>([]);
-    const [input, setInput] = useState<string>('');
-
     const { currentFilter, filteredTodos, handleFilterChange } = useFilterTodos({ todoList: todos });
 
-    const addTodo = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter' && input) {
-            setTodos((todos) => [
-                ...todos,
-                { id: Date.now(), text: input, completed: currentFilter === TODO_TYPES.COMPLETED }
-            ]);
-            setInput('');
-        }
-    };
-
-    const toggleTodo = useCallback(
+    const handleToggleTodo = useCallback(
         (id: number) => () => {
             setTodos((todos) => todos.map((todo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo)));
         },
@@ -33,6 +25,15 @@ const App: React.FC = () => {
     }, []);
 
     const itemsCountText = `${filteredTodos.length} items ${currentFilter !== TODO_TYPES.ALL ? currentFilter : 'left'}`;
+
+    const isClearButtonVisible = currentFilter !== TODO_TYPES.ACTIVE;
+    const isClearButtonDisabled = !todos.some((item) => item.completed);
+
+    const isCompletedFilterSelected = currentFilter === TODO_TYPES.COMPLETED;
+
+    const handleCreateTodo = (todoText: string) => {
+        setTodos((todos) => [...todos, { id: createId(), text: todoText, completed: isCompletedFilterSelected }]);
+    };
 
     return (
         <Container
@@ -51,15 +52,7 @@ const App: React.FC = () => {
             <Typography variant="h1" align="center" gutterBottom color="#e0e0e0">
                 todos
             </Typography>
-            <TextField
-                fullWidth
-                label={TODO_INPUT_PLACEHOLDER}
-                value={input}
-                onChange={(e) => setInput(e.target.value.trim())}
-                onKeyDown={addTodo}
-                variant="outlined"
-                sx={{ mb: 2 }}
-            />
+            <TextInput onAddTodo={handleCreateTodo} />
             <Container maxWidth="lg">
                 <Tabs
                     value={currentFilter}
@@ -73,21 +66,16 @@ const App: React.FC = () => {
                     <Tab label="Completed" value={TODO_TYPES.COMPLETED} />
                 </Tabs>
             </Container>
-            <Divider sx={{ my: 2 }} />
+            <Divider />
             <Box sx={{ flex: 1, overflowY: 'auto' }}>
-                <TodoList todos={filteredTodos} toggleTodo={toggleTodo} />
+                <TodoList todos={filteredTodos} onToggle={handleToggleTodo} />
             </Box>
-            <Divider sx={{ my: 2 }} />
+            <Divider />
             <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
                 <Typography color="text.secondary">{itemsCountText}</Typography>
-                <Button
-                    onClick={clearCompletedTodos}
-                    disabled={!todos.some((item) => item.completed)}
-                    color="error"
-                    variant="outlined"
-                >
-                    Clear completed
-                </Button>
+                {isClearButtonVisible && (
+                    <ClearButton isDisabled={isClearButtonDisabled} onClick={clearCompletedTodos} />
+                )}
             </Stack>
         </Container>
     );
