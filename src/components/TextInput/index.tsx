@@ -10,13 +10,15 @@ const TextInput = memo(({ onAddTodo }: TextInputProps) => {
     const [value, setValue] = useState<string>('');
 
     const handleAddTodo = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter' && value) {
-            onAddTodo(value);
+        const noSpacesValue = value.trim();
+
+        if (e.key === 'Enter' && noSpacesValue) {
+            onAddTodo(noSpacesValue);
             setValue('');
         }
     };
 
-    const handleChangeInput = useCallback((e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value.trim()), []);
+    const handleChangeInput = useCallback((e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value), []);
 
     return (
         <TextField
