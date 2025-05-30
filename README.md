@@ -8,7 +8,7 @@
 
 ## 📦 Stack
 
-React, TypeScript, Material UI, Vite
+React, TypeScript, Material UI, Vite, Vitest, Testing-Library
 
 ## 🚀 Запуск проекта
 
@@ -21,3 +21,8 @@ npm i && npm run start
 ```bash
 npm run test
 ```
+
+## 🖼️ Описание
+
+![Скриншот приложения](https://github.com/user-attachments/assets/83f6fe9b-43bf-4454-abb0-59b18605a2cb)
+
