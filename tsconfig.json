@@ -12,6 +12,7 @@
         // Aliases
         "baseUrl": ".",
         "paths": {
+            "@app/*": ["src/app/*"],
             "@components/*": ["src/components/*"],
             "@entities/*": ["src/entities/*"],
             "@hooks/*": ["src/hooks/*"],

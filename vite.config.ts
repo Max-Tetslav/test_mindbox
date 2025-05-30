@@ -7,6 +7,7 @@ export default defineConfig({
     base: '/test_mindbox/',
     resolve: {
         alias: {
+            '@app': path.resolve(__dirname, 'src/app'),
             '@components': path.resolve(__dirname, 'src/components'),
             '@entities': path.resolve(__dirname, 'src/entities'),
             '@hooks': path.resolve(__dirname, 'src/hooks'),
