@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { TODO_INPUT_PLACEHOLDER } from '@entities/todos';
 import { fakeCompletedTodo } from '@utils/__mocks__/todo';
 
-import TextInput from './';
+import TextInput from './TextInput';
 
 const setupTest = () => {
     const user = userEvent.setup();

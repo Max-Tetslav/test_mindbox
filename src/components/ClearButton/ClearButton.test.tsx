@@ -1,6 +1,6 @@
 import { render, fireEvent } from '@testing-library/react';
 
-import ClearButton from './';
+import ClearButton from './ClearButton';
 
 const setupTest = (isDisabled: boolean = false) => {
     const fakeFn = vi.fn();

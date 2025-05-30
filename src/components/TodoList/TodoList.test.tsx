@@ -5,7 +5,7 @@ import { describe, it, expect, vi } from 'vitest';
 import type { Todos } from '@entities/todos';
 import { fakeCompletedTodo, fakeTodoList } from '@utils/__mocks__/todo';
 
-import TodoList from './';
+import TodoList from './TodoList';
 
 const setupTest = (todos: Todos = fakeTodoList) => {
     const user = userEvent.setup();
