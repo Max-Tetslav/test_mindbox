@@ -1,11 +1,10 @@
 name: Lint-project
 run-name: Lint-project
 on:
-    push:
-        branches: [main]
-    pull_request:
-        types: [opened, reopened, synchronize]
-        branches: [main]
+    workflow_run:
+        workflows: ['Test-project']
+        types:
+            - completed
 jobs:
     Lint-project:
         runs-on: ubuntu-latest

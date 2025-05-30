@@ -3,9 +3,6 @@ run-name: Build-project
 on:
     push:
         branches: [main]
-    pull_request:
-        types: [opened, reopened, synchronize]
-        branches: [main]
 jobs:
     Build-project:
         runs-on: ubuntu-latest
