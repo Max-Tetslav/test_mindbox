@@ -1,6 +1,6 @@
-import { describe, it, expect, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { describe, it, expect, vi } from 'vitest';
 
 import type { Todos } from '@entities/todos';
 import { fakeCompletedTodo, fakeTodoList } from '@utils/__mocks__/todo';

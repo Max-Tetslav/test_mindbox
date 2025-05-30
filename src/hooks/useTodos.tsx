@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
-import { TODO_TYPES } from '../entities/todos';
 
 import type { Todos, TodoType } from '@entities/todos';
+import { TODO_TYPES } from '@entities/todos';
 import { createId } from '@utils/createId';
 
 interface UseTodosProps {

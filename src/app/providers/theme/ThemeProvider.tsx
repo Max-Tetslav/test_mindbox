@@ -1,7 +1,7 @@
-import type { ReactNode } from 'react';
 import { ThemeProvider as MuiThemeProvider } from '@mui/material';
 import { amber, orange } from '@mui/material/colors';
 import { createTheme } from '@mui/material/styles';
+import type { ReactNode } from 'react';
 
 const theme = createTheme({
     palette: {

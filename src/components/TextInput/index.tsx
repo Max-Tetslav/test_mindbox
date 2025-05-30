@@ -1,5 +1,5 @@
-import { memo, useCallback, useState, type ChangeEvent } from 'react';
 import { TextField } from '@mui/material';
+import { memo, useCallback, useState, type ChangeEvent } from 'react';
 
 import { TODO_INPUT_PLACEHOLDER } from '@entities/todos';
 

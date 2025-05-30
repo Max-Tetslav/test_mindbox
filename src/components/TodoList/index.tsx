@@ -1,5 +1,5 @@
-import { memo } from 'react';
 import { List, ListItem, ListItemText, Checkbox, FormControlLabel, Typography, Container } from '@mui/material';
+import { memo } from 'react';
 
 import type { Todos } from '@entities/todos';
 

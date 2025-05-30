@@ -1,5 +1,5 @@
-import type { SyntheticEvent } from 'react';
 import { renderHook, act } from '@testing-library/react';
+import type { SyntheticEvent } from 'react';
 
 import { TODO_TYPES, DEFAULT_TODO_TYPE } from '@entities/todos';
 
