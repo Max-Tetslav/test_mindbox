@@ -8,7 +8,7 @@
 
 ## 📦 Stack
 
-React, TypeScript, Material UI, Vite, Vitest, Testing-Library, GitHub Actions CI/CD
+React, TypeScript, Material UI, Vite, Vitest, Testing-Library, Eslint, Prettier, GitHub Actions CI/CD
 
 ## 🚀 Запуск проекта
 
