@@ -1,0 +1,37 @@
+import type { ReactNode } from 'react';
+import { ThemeProvider as MuiThemeProvider } from '@mui/material';
+import { amber, orange } from '@mui/material/colors';
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+    palette: {
+        mode: 'dark',
+        primary: {
+            main: orange[300]
+        },
+        secondary: {
+            main: amber[300]
+        },
+        background: {
+            default: 'transparent',
+            paper: 'rgba(0, 0, 0, 0.5)'
+        },
+        text: {
+            primary: amber[400],
+            secondary: amber[300]
+        },
+        error: {
+            main: orange[700]
+        }
+    }
+});
+
+type ThemeProviderProps = {
+    children: ReactNode;
+};
+
+const ThemeProvider = ({ children }: ThemeProviderProps) => {
+    return <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>;
+};
+
+export default ThemeProvider;

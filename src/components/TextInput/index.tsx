@@ -23,13 +23,13 @@ const TextInput = memo(({ onAddTodo }: TextInputProps) => {
 
     return (
         <TextField
-            fullWidth
+            variant="outlined"
             label={TODO_INPUT_PLACEHOLDER}
             value={value}
-            variant="outlined"
             sx={{ mb: 2 }}
             onKeyDown={handleAddTodo}
             onChange={handleChangeInput}
+            fullWidth
         />
     );
 });

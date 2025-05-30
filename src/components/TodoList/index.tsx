@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { List, ListItem, ListItemText, Checkbox, FormControlLabel, Typography } from '@mui/material';
+import { List, ListItem, ListItemText, Checkbox, FormControlLabel, Typography, Container } from '@mui/material';
 
 import type { Todos } from '@entities/todos';
 
@@ -11,9 +11,11 @@ type TodoListProps = {
 const TodoList = memo(({ todos, onToggle }: TodoListProps) => {
     if (todos.length === 0) {
         return (
-            <Typography variant="body1" align="center" color="text.secondary">
-                List is empty
-            </Typography>
+            <Container className="emptyList">
+                <Typography variant="body1" align="center" color="text.secondary">
+                    This is fine!
+                </Typography>
+            </Container>
         );
     }
 
@@ -26,7 +28,10 @@ const TodoList = memo(({ todos, onToggle }: TodoListProps) => {
                         label={
                             <ListItemText
                                 primary={todo.text}
-                                sx={{ textDecoration: todo.completed ? 'line-through' : 'none' }}
+                                sx={{
+                                    textDecoration: todo.completed ? 'line-through' : 'none',
+                                    color: 'text.secondary'
+                                }}
                             />
                         }
                     />

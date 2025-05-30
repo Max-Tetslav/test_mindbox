@@ -118,10 +118,8 @@ describe(useTodos, () => {
             result.current.handleToggleTodo(fakeId)(); // чекаем первую задачу
         });
 
-        console.log(result.current.filteredTodos);
-
         expect(result.current.filteredTodos).toHaveLength(1);
-        // expect(result.current.filteredTodos[0].completed).toBe(false);
+        expect(result.current.filteredTodos[0].completed).toBe(false);
     });
 
     it('В массиве только выполненные задачи при фильтре completed', () => {

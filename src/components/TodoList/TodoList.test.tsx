@@ -19,7 +19,7 @@ describe(TodoList, () => {
     it('Отображает сообщение, если список пуст', () => {
         const { getByText } = setupTest([]);
 
-        expect(getByText('List is empty')).toBeInTheDocument();
+        expect(getByText('This is fine!')).toBeInTheDocument();
     });
 
     it('Рендерит todos', () => {

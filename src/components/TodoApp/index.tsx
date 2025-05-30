@@ -1,4 +1,4 @@
-import { Container, Typography, Stack, Tabs, Tab, Box } from '@mui/material';
+import { Container, Typography, Tabs, Tab, Box } from '@mui/material';
 
 import ClearButton from '@components/ClearButton';
 import TodoList from '@components/TodoList';
@@ -8,37 +8,28 @@ import { TODO_TYPES } from '@entities/todos';
 import { useFilterTodos } from '@hooks/useFilterTodos';
 import { useTodos } from '@hooks/useTodos';
 
-const App = () => {
+const TodoApp = () => {
     const { currentFilter, handleFilterChange } = useFilterTodos();
     const { filteredTodos, isClearButtonDisabled, handleCreateTodo, handleToggleTodo, handleClearCompletedTodos } =
         useTodos({ currentFilter });
 
-    const itemsCountText = `${filteredTodos.length} items ${currentFilter !== TODO_TYPES.ALL ? currentFilter : 'left'}`;
+    const itemsCountText = `${filteredTodos.length} items ${
+        currentFilter !== TODO_TYPES.ALL ? currentFilter : 'to fine'
+    }`;
 
     const isClearButtonVisible = currentFilter !== TODO_TYPES.ACTIVE;
 
     return (
-        <Container
-            maxWidth="sm"
-            disableGutters
-            sx={{
-                flex: 1,
-                display: 'flex',
-                flexDirection: 'column',
-                py: 4,
-                px: 2,
-                height: '100vh'
-            }}
-        >
-            {' '}
-            <Typography variant="h1" align="center" gutterBottom color="#e0e0e0">
+        <Container className="appContainer" maxWidth="sm" disableGutters>
+            <Typography variant="h1" align="center" gutterBottom color="primary">
                 todos
             </Typography>
             <TextInput onAddTodo={handleCreateTodo} />
-            <Container maxWidth="lg">
+            <Container maxWidth={false}>
                 <Tabs
                     value={currentFilter}
                     onChange={handleFilterChange}
+                    variant="fullWidth"
                     textColor="primary"
                     indicatorColor="primary"
                     centered
@@ -49,18 +40,18 @@ const App = () => {
                 </Tabs>
             </Container>
             <Divider />
-            <Box sx={{ flex: 1, overflowY: 'auto' }}>
+            <Box className="listContainer">
                 <TodoList todos={filteredTodos} onToggle={handleToggleTodo} />
             </Box>
             <Divider />
-            <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
+            <Box className="statusContainer">
                 <Typography color="text.secondary">{itemsCountText}</Typography>
                 {isClearButtonVisible && (
                     <ClearButton isDisabled={isClearButtonDisabled} onClick={handleClearCompletedTodos} />
                 )}
-            </Stack>
+            </Box>
         </Container>
     );
 };
 
-export default App;
+export default TodoApp;
