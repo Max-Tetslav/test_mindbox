@@ -8,7 +8,7 @@
 
 ## 📦 Stack
 
-React, TypeScript, Material UI, Vite, Vitest, Testing-Library
+React, TypeScript, Material UI, Vite, Vitest, Testing-Library, GitHub Actions CI/CD
 
 ## 🚀 Запуск проекта
 
@@ -25,4 +25,3 @@ npm run test
 ## 🖼️ Описание
 
 ![Скриншот приложения](https://github.com/user-attachments/assets/83f6fe9b-43bf-4454-abb0-59b18605a2cb)
-
