@@ -1,12 +1,12 @@
 import { renderHook, act } from '@testing-library/react';
 
 import { TODO_TYPES, type TodoType } from '@entities/todos';
-import { fakeTodoList } from '@utils/__mocks__/todo';
+import { fakeTodoList } from '@shared/lib/__mocks__/todo';
 
 import { useTodos } from '../useTodos';
 
 let fakeId = 0;
-vi.mock('@utils/createId', () => ({
+vi.mock('@shared/lib/createId', () => ({
     createId: vi.fn(() => ++fakeId)
 }));
 

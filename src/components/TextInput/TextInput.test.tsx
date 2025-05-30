@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { TODO_INPUT_PLACEHOLDER } from '@entities/todos';
-import { fakeCompletedTodo } from '@utils/__mocks__/todo';
+import { fakeCompletedTodo } from '@shared/lib/__mocks__/todo';
 
 import TextInput from './TextInput';
 

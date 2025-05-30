@@ -16,7 +16,7 @@
             "@components/*": ["src/components/*"],
             "@entities/*": ["src/entities/*"],
             "@hooks/*": ["src/hooks/*"],
-            "@utils/*": ["src/utils/*"]
+            "@shared/*": ["src/shared/*"]
         },
 
         /* Bundler mode */

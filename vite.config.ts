@@ -11,7 +11,7 @@ export default defineConfig({
             '@components': path.resolve(__dirname, 'src/components'),
             '@entities': path.resolve(__dirname, 'src/entities'),
             '@hooks': path.resolve(__dirname, 'src/hooks'),
-            '@utils': path.resolve(__dirname, 'src/utils')
+            '@shared': path.resolve(__dirname, 'src/shared')
         }
     },
     test: {

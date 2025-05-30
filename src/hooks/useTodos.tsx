@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from 'react';
 
 import type { Todos, TodoType } from '@entities/todos';
 import { TODO_TYPES } from '@entities/todos';
-import { createId } from '@utils/createId';
+import { createId } from '@shared/lib/createId';
 
 interface UseTodosProps {
     currentFilter: TodoType;

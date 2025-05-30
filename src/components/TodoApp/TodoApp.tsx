@@ -1,12 +1,12 @@
 import { Container, Typography, Tabs, Tab, Box } from '@mui/material';
 
 import { ClearButton } from '@components/ClearButton';
-import { Divider } from '@components/Divider';
 import { TextInput } from '@components/TextInput';
 import { TodoList } from '@components/TodoList';
 import { TODO_TYPES } from '@entities/todos';
 import { useFilterTodos } from '@hooks/useFilterTodos';
 import { useTodos } from '@hooks/useTodos';
+import { Divider } from '@shared/ui/Divider';
 
 const TodoApp = () => {
     const { currentFilter, handleFilterChange } = useFilterTodos();

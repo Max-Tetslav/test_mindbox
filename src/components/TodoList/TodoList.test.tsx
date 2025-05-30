@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 
 import type { Todos } from '@entities/todos';
-import { fakeCompletedTodo, fakeTodoList } from '@utils/__mocks__/todo';
+import { fakeCompletedTodo, fakeTodoList } from '@shared/lib/__mocks__/todo';
 
 import TodoList from './TodoList';
 
