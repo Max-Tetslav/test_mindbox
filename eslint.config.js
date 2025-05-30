@@ -15,8 +15,24 @@ export default tseslint.config(
         files: ['src/**/*.{ts,tsx}'],
         languageOptions: {
             ecmaVersion: 2020,
-            globals: globals.browser
+            globals: globals.browser,
+            parserOptions: {
+                project: './tsconfig.json'
+            }
         },
+
+        settings: {
+            'import/parsers': {
+                '@typescript-eslint/parser': ['.ts', '.tsx']
+            },
+            'import/resolver': {
+                typescript: {
+                    alwaysTryTypes: true,
+                    project: './tsconfig.json'
+                }
+            }
+        },
+
         plugins: {
             'react-hooks': reactHooks,
             'react-refresh': reactRefresh,
@@ -42,16 +58,19 @@ export default tseslint.config(
                 'error',
                 {
                     groups: ['builtin', 'external', 'internal', ['parent', 'sibling', 'index']],
+                    pathGroups: [
+                        {
+                            pattern: '@(app|components|entities|hooks|utils)/**',
+                            group: 'internal',
+                            position: 'after'
+                        }
+                    ],
+                    pathGroupsExcludedImportTypes: ['builtin', 'external'],
                     'newlines-between': 'always',
                     alphabetize: { order: 'asc', caseInsensitive: false }
                 }
             ],
             'import/no-duplicates': 'error'
-        },
-        languageOptions: {
-            parserOptions: {
-                project: './tsconfig.json'
-            }
         }
     }
 );
