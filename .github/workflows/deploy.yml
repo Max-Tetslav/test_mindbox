@@ -1,8 +1,10 @@
 name: Deploy-project
 run-name: Deploy-project
 on:
-    push:
-        branches: [main]
+    workflow_run:
+        workflows: ['Lint-project', 'Test-project']
+        types:
+            - completed
 jobs:
     Deploy-project:
         runs-on: ubuntu-latest
