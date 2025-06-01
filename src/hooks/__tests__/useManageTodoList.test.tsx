@@ -1,7 +1,7 @@
 import { renderHook, act } from '@testing-library/react';
 
 import { TODO_TYPES, type TodoType } from '@entities/Todo/model/todos';
-import { fakeTodoList } from '@shared/lib/__mocks__/todo';
+import { fakeNewText, fakeTodoList } from '@shared/lib/__mocks__/todo';
 
 import { useManageTodoList } from '../useManageTodoList';
 
@@ -62,6 +62,48 @@ describe(useManageTodoList, () => {
         });
 
         expect(result.current.filteredTodos[0].completed).toBe(true);
+    });
+
+    it('Удаляет todo из списка по id', () => {
+        const { result } = setupTest();
+
+        act(() => {
+            result.current.handleCreateTodo(fakeTodoList[0].text);
+        });
+
+        act(() => {
+            result.current.handleDeleteTodo(fakeId)();
+        });
+
+        expect(result.current.generalTodoListLength).toBe(0);
+    });
+
+    it('Изменяет текст todo из списка по id', () => {
+        const { result } = setupTest();
+
+        act(() => {
+            result.current.handleCreateTodo(fakeTodoList[0].text);
+        });
+
+        act(() => {
+            result.current.handleEditTodo(fakeId, fakeNewText);
+        });
+
+        expect(result.current.filteredTodos[0].text).toBe(fakeNewText);
+    });
+
+    it('Не изменяет текст todo если передать другой id', () => {
+        const { result } = setupTest();
+
+        act(() => {
+            result.current.handleCreateTodo(fakeTodoList[0].text);
+        });
+
+        act(() => {
+            result.current.handleEditTodo(999, fakeNewText);
+        });
+
+        expect(result.current.filteredTodos[0].text).not.toBe(fakeNewText);
     });
 
     it('Удаляет выполненные задачи при вызове handleClearCompletedTodos', () => {
