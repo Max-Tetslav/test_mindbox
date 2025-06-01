@@ -1,5 +1,9 @@
 @import url('./scrollbar.css');
 
+* {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     overscroll-behavior: none;
@@ -16,10 +20,16 @@ body {
 }
 
 .listContainer {
+    scrollbar-gutter: stable;
     flex: 1;
     overflow-y: auto;
     height: 40vh;
     padding: 0 2rem;
+}
+
+.list {
+    height: 100%;
+    width: 100%;
 }
 
 .statusContainer {
