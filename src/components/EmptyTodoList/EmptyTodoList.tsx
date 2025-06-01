@@ -1,7 +1,13 @@
 import { Typography, Container } from '@mui/material';
 import { memo } from 'react';
 
-import { TODO_TYPES, type TodoType } from '@entities/Todo/model/todos';
+import {
+    EMPTY_TODO_GENERAL_LIST_TEXT,
+    EMPTY_TODO_ACTIVE_LIST_TEXT,
+    EMPTY_TODO_COMPETED_LIST_TEXT,
+    TODO_TYPES,
+    type TodoType
+} from '@entities/Todo/model/todos';
 
 type EmptyTodoListProps = {
     generalTodoLength: number;
@@ -18,15 +24,15 @@ export const EmptyTodoList = memo(
                 const isCompletedTab = currentListFilter === TODO_TYPES.COMPLETED;
 
                 if (isCompletedTab && isEmptyFilteredList) {
-                    return 'Complete your first todo!';
+                    return EMPTY_TODO_COMPETED_LIST_TEXT;
                 }
 
                 if (isActiveTab && isEmptyFilteredList) {
-                    return 'This is fine!';
+                    return EMPTY_TODO_ACTIVE_LIST_TEXT;
                 }
             }
 
-            return 'Add your first todo!';
+            return EMPTY_TODO_GENERAL_LIST_TEXT;
         };
 
         return (

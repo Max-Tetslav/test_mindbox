@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 
-import { TODO_TYPES, type Todos } from '@entities/Todo/model/todos';
+import { EMPTY_TODO_GENERAL_LIST_TEXT, TODO_TYPES, type Todos } from '@entities/Todo/model/todos';
 import { fakeCompletedTodo, fakeTodoList } from '@shared/lib/__mocks__/todo';
 
 import TodoList from './TodoList';
@@ -34,6 +34,12 @@ describe(TodoList, () => {
         expect(getByText('Task 1')).toBeInTheDocument();
         expect(getByText('Task 2')).toBeInTheDocument();
         expect(getByText('Task 3')).toBeInTheDocument();
+    });
+
+    it('Рендерит пустой список', async () => {
+        const { getByText } = setupTest([]);
+
+        expect(getByText(EMPTY_TODO_GENERAL_LIST_TEXT)).toBeInTheDocument();
     });
 
     it('Выполненные todo имеют checked=true', () => {
