@@ -7,3 +7,4 @@ export const fakeIncompletedTodos: Todo[] = [
 export const fakeCompletedTodo: Todo = { id: 3, text: 'Task 3', completed: true };
 
 export const fakeTodoList: Todos = [...fakeIncompletedTodos, fakeCompletedTodo];
+export const fakeNewText: string = 'New text';
