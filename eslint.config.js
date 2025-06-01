@@ -60,7 +60,7 @@ export default tseslint.config(
                     groups: ['builtin', 'external', 'internal', ['parent', 'sibling', 'index']],
                     pathGroups: [
                         {
-                            pattern: '@(app|components|entities|hooks|shared)/**',
+                            pattern: '@(app|components|entities|hooks|pages|shared)/**',
                             group: 'internal',
                             position: 'after'
                         }

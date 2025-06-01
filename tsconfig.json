@@ -16,6 +16,7 @@
             "@components/*": ["src/components/*"],
             "@entities/*": ["src/entities/*"],
             "@hooks/*": ["src/hooks/*"],
+            "@pages/*": ["src/pages/*"],
             "@shared/*": ["src/shared/*"]
         },
 
