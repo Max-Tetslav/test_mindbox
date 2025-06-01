@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 
 import type { Todo } from '@entities/Todo/model/todos';
 
-import { useInputLengthLimit } from './useLimitText';
+import { useInputLengthLimit } from './useInputLengthLimit';
 
 type UseEditTodoParams = {
     todo: Todo;
@@ -25,7 +25,7 @@ export const useEditTodo = ({ todo, onEdit }: UseEditTodoParams): UseEditTodoRes
 
     const { isInputLimitReached } = useInputLengthLimit({ inputLength: editedText.length });
 
-    const handleSave = () => {
+    const handleSave = useCallback(() => {
         const isNewText = editedText !== todo.text;
         const canUpdateText = editedText && isNewText && !isInputLimitReached;
 
@@ -33,7 +33,7 @@ export const useEditTodo = ({ todo, onEdit }: UseEditTodoParams): UseEditTodoRes
             onEdit(todo.id, editedText.trim());
         }
         setIsEditMode(false);
-    };
+    }, [todo.id, todo.text, editedText, isInputLimitReached, onEdit]);
 
     const handleKeyDown = useCallback(
         (e: React.KeyboardEvent) => {

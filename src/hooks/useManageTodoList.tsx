@@ -34,7 +34,7 @@ export const useManageTodoList = ({ currentFilter }: UseTodosProps): UseTodosRes
         []
     );
 
-    const handleEditTodo = (todoId: number, newText: string) => {
+    const handleEditTodo = useCallback((todoId: number, newText: string) => {
         setTodos((todos) =>
             todos.map((todo) => {
                 if (todo.id === todoId) {
@@ -47,13 +47,16 @@ export const useManageTodoList = ({ currentFilter }: UseTodosProps): UseTodosRes
                 return todo;
             })
         );
-    };
+    }, []);
 
-    const handleCreateTodo = (todoText: string) => {
-        const isCompletedFilterSelected = currentFilter === TODO_TYPES.COMPLETED;
+    const handleCreateTodo = useCallback(
+        (todoText: string) => {
+            const isCompletedFilterSelected = currentFilter === TODO_TYPES.COMPLETED;
 
-        setTodos((todos) => [...todos, { id: createId(), text: todoText, completed: isCompletedFilterSelected }]);
-    };
+            setTodos((todos) => [...todos, { id: createId(), text: todoText, completed: isCompletedFilterSelected }]);
+        },
+        [currentFilter]
+    );
 
     const handleToggleTodo = useCallback(
         (todoId: number) => () => {
