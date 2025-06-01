@@ -2,16 +2,14 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 
+vi.mock('@hooks/useEditTodo', () => ({
+    useEditTodo: vi.fn()
+}));
+
 import { useEditTodo } from '@hooks/useEditTodo';
 import { fakeCompletedTodo, fakeNewText } from '@shared/lib/__mocks__/todo';
 
 import { TodoListItem } from '../TodoListItem';
-
-vi.mock('@hooks/useEditTodo', async () => {
-    return {
-        useEditTodo: vi.fn()
-    };
-});
 
 const setupTest = (isEditMode = false) => {
     const user = userEvent.setup();
@@ -23,7 +21,7 @@ const setupTest = (isEditMode = false) => {
 
     const fakeTodo = fakeCompletedTodo;
 
-    (useEditTodo as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
+    vi.mocked(useEditTodo).mockReturnValue({
         isEditMode,
         isInputLimitReached: false,
         editedText: fakeNewText,
