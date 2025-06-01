@@ -14,6 +14,8 @@ vi.mock('@hooks/useEditTodo', async () => {
 });
 
 const setupTest = (isEditMode = false) => {
+    const user = userEvent.setup();
+
     const fakeToggle = vi.fn(() => vi.fn());
     const fakeDelete = vi.fn(() => vi.fn());
     const fakeEdit = vi.fn();
@@ -44,7 +46,8 @@ const setupTest = (isEditMode = false) => {
         fakeEdit,
         fakeDelete,
         fakeTurnOnEditMode,
-        fakeTodo
+        fakeTodo,
+        user
     };
 };
 
@@ -60,25 +63,25 @@ describe(TodoListItem, () => {
     });
 
     it('Вызывает onToggle при клике на чекбокс', async () => {
-        const { getByRole, fakeToggle, fakeTodo } = setupTest();
+        const { getByRole, fakeToggle, fakeTodo, user } = setupTest();
 
-        await userEvent.click(getByRole('checkbox'));
+        await user.click(getByRole('checkbox'));
 
         expect(fakeToggle).toHaveBeenCalledWith(fakeTodo.id);
     });
 
     it('Вызывает onDelete при клике на кнопку удаления', async () => {
-        const { getByLabelText, fakeDelete, fakeTodo } = setupTest();
+        const { getByLabelText, fakeDelete, fakeTodo, user } = setupTest();
 
-        await userEvent.click(getByLabelText('delete'));
+        await user.click(getByLabelText('delete'));
 
         expect(fakeDelete).toHaveBeenCalledWith(fakeTodo.id);
     });
 
     it('Вызывает handleTurnOnEditMode при клике на кнопку редактирования', async () => {
-        const { getByLabelText, fakeTurnOnEditMode } = setupTest();
+        const { getByLabelText, fakeTurnOnEditMode, user } = setupTest();
 
-        await userEvent.click(getByLabelText('edit'));
+        await user.click(getByLabelText('edit'));
 
         expect(fakeTurnOnEditMode).toHaveBeenCalled();
     });
