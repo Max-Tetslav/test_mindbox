@@ -8,7 +8,7 @@ type TextInputProps = {
     onAddTodo: (todoText: string) => void;
 };
 
-const TextInput = memo(({ onAddTodo }: TextInputProps) => {
+export const TextInput = memo(({ onAddTodo }: TextInputProps) => {
     const [value, setValue] = useState<string>('');
 
     const { isInputLimitReached } = useInputLengthLimit({ inputLength: value.length });
@@ -39,5 +39,3 @@ const TextInput = memo(({ onAddTodo }: TextInputProps) => {
         />
     );
 });
-
-export default TextInput;

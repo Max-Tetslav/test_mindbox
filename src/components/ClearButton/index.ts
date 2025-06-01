@@ -1,1 +1,1 @@
-export { default as ClearButton } from './ClearButton';
+export { ClearButton } from './ClearButton';
