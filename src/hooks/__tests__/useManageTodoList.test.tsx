@@ -1,9 +1,9 @@
 import { renderHook, act } from '@testing-library/react';
 
-import { TODO_TYPES, type TodoType } from '@entities/todos';
+import { TODO_TYPES, type TodoType } from '@entities/Todo/model/todos';
 import { fakeTodoList } from '@shared/lib/__mocks__/todo';
 
-import { useTodos } from '../useTodos';
+import { useManageTodoList } from '../useManageTodoList';
 
 let fakeId = 0;
 vi.mock('@shared/lib/createId', () => ({
@@ -11,21 +11,21 @@ vi.mock('@shared/lib/createId', () => ({
 }));
 
 const setupTest = (filter: TodoType = TODO_TYPES.ALL) => {
-    const { result } = renderHook(() => useTodos({ currentFilter: filter }));
+    const { result } = renderHook(() => useManageTodoList({ currentFilter: filter }));
 
     return { result };
 };
 
-describe(useTodos, () => {
+describe(useManageTodoList, () => {
     beforeEach(() => {
         fakeId = 0;
     });
 
-    it('isClearButtonDisabled=true при пустом массиве', () => {
+    it('hasCompletedTodos=false при пустом массиве', () => {
         const { result } = setupTest();
 
         expect(result.current.filteredTodos).toEqual([]);
-        expect(result.current.isClearButtonDisabled).toBe(true);
+        expect(result.current.hasCompletedTodos).toBe(false);
     });
 
     it('Создаёт задачу', () => {
@@ -82,17 +82,17 @@ describe(useTodos, () => {
         expect(result.current.filteredTodos).toHaveLength(0);
     });
 
-    it('isClearButtonDisabled === true, если нет выполненных задач', () => {
+    it('hasCompletedTodos === false, если нет выполненных задач', () => {
         const { result } = setupTest();
 
         act(() => {
             result.current.handleCreateTodo(fakeTodoList[0].text);
         });
 
-        expect(result.current.isClearButtonDisabled).toBe(true);
+        expect(result.current.hasCompletedTodos).toBe(false);
     });
 
-    it('isClearButtonDisabled === false, если есть выполненные задачи', () => {
+    it('hasCompletedTodos === true, если есть выполненные задачи', () => {
         const { result } = setupTest();
 
         act(() => {
@@ -103,7 +103,7 @@ describe(useTodos, () => {
             result.current.handleToggleTodo(fakeId)(); // чекаем задачу
         });
 
-        expect(result.current.isClearButtonDisabled).toBe(false);
+        expect(result.current.hasCompletedTodos).toBe(true);
     });
 
     it('В массиве только активные задачи при фильтре active', () => {
