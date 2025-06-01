@@ -2,7 +2,7 @@ import { TextField } from '@mui/material';
 import { memo, useCallback, useState, type ChangeEvent } from 'react';
 
 import { TODO_INPUT_ERROR_TEXT, TODO_INPUT_PLACEHOLDER } from '@entities/Todo/model/todos';
-import { useInputLengthLimit } from '@hooks/useLimitText';
+import { useInputLengthLimit } from '@hooks/useInputLengthLimit';
 
 type TextInputProps = {
     onAddTodo: (todoText: string) => void;
