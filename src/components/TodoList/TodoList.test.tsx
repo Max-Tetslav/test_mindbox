@@ -2,26 +2,32 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 
-import type { Todos } from '@entities/todos';
+import { TODO_TYPES, type Todos } from '@entities/Todo/model/todos';
 import { fakeCompletedTodo, fakeTodoList } from '@shared/lib/__mocks__/todo';
 
 import TodoList from './TodoList';
 
 const setupTest = (todos: Todos = fakeTodoList) => {
     const user = userEvent.setup();
-    const fakeFn = vi.fn();
-    const { getByText, getAllByRole } = render(<TodoList todos={todos} onToggle={fakeFn} />);
+    const fakeToggle = vi.fn();
+    const fakeDelete = vi.fn();
+    const fakeEdit = vi.fn();
+    const { getByText, getAllByRole } = render(
+        <TodoList
+            totalTodos={todos.length}
+            isEmptyList={todos.length === 0}
+            currentListFilter={TODO_TYPES.ALL}
+            todos={todos}
+            onToggle={fakeToggle}
+            onDelete={fakeDelete}
+            onEdit={fakeEdit}
+        />
+    );
 
-    return { getByText, getAllByRole, fakeFn, user };
+    return { getByText, getAllByRole, fakeToggle, user };
 };
 
 describe(TodoList, () => {
-    it('Отображает сообщение, если список пуст', () => {
-        const { getByText } = setupTest([]);
-
-        expect(getByText('This is fine!')).toBeInTheDocument();
-    });
-
     it('Рендерит todos', () => {
         const { getByText } = setupTest();
 
@@ -41,11 +47,11 @@ describe(TodoList, () => {
     });
 
     it('Вызывает onToggle при клике на чекбокс', async () => {
-        const { getByText, fakeFn, user } = setupTest();
+        const { getByText, fakeToggle, user } = setupTest();
 
         const todoCheckbox = getByText(fakeCompletedTodo.text) as HTMLInputElement;
         await user.click(todoCheckbox);
 
-        expect(fakeFn).toHaveBeenCalledWith(1);
+        expect(fakeToggle).toHaveBeenCalledWith(1);
     });
 });

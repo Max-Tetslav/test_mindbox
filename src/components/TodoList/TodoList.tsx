@@ -1,44 +1,49 @@
-import { List, ListItem, ListItemText, Checkbox, FormControlLabel, Typography, Container } from '@mui/material';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { List } from '@mui/material';
 import { memo } from 'react';
 
-import type { Todos } from '@entities/todos';
+import { EmptyTodoList } from '@components/EmptyTodoList';
+import { TodoListItem } from '@components/TodoListItem';
+import type { Todos, TodoType } from '@entities/Todo/model/todos';
 
 type TodoListProps = {
     todos: Todos;
-    onToggle: (todoId: number) => () => void;
+    totalTodos: number;
+    isEmptyList: boolean;
+    currentListFilter: TodoType;
+    onToggle: (todoId: number) => VoidFunction;
+    onDelete: (todoId: number) => VoidFunction;
+    onEdit: (todoId: number, newText: string) => void;
 };
 
-const TodoList = memo(({ todos, onToggle }: TodoListProps) => {
-    if (todos.length === 0) {
+const TodoList = memo(
+    ({ todos, totalTodos, isEmptyList, currentListFilter, onToggle, onDelete, onEdit }: TodoListProps) => {
+        const [listElement] = useAutoAnimate();
+
         return (
-            <Container className="emptyList">
-                <Typography variant="body1" align="center" color="text.secondary">
-                    This is fine!
-                </Typography>
-            </Container>
+            <List ref={listElement} className="list" disablePadding>
+                {isEmptyList ? (
+                    <EmptyTodoList
+                        filteredTodoLength={todos.length}
+                        generalTodoLength={totalTodos}
+                        currentListFilter={currentListFilter}
+                    />
+                ) : (
+                    <>
+                        {todos.map((todo) => (
+                            <TodoListItem
+                                key={todo.id}
+                                todo={todo}
+                                onToggle={onToggle}
+                                onDelete={onDelete}
+                                onEdit={onEdit}
+                            />
+                        ))}
+                    </>
+                )}
+            </List>
         );
     }
-
-    return (
-        <List>
-            {todos.map((todo) => (
-                <ListItem key={todo.id} disablePadding>
-                    <FormControlLabel
-                        control={<Checkbox checked={todo.completed} onChange={onToggle(todo.id)} />}
-                        label={
-                            <ListItemText
-                                primary={todo.text}
-                                sx={{
-                                    textDecoration: todo.completed ? 'line-through' : 'none',
-                                    color: 'text.secondary'
-                                }}
-                            />
-                        }
-                    />
-                </ListItem>
-            ))}
-        </List>
-    );
-});
+);
 
 export default TodoList;
