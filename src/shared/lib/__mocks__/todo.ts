@@ -1,4 +1,4 @@
-import type { Todo, Todos } from '@entities/todos';
+import type { Todo, Todos } from '@entities/Todo/model/todos';
 
 export const fakeIncompletedTodos: Todo[] = [
     { id: 1, text: 'Task 1', completed: false },

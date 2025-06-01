@@ -1,13 +1,11 @@
-import { TodoApp } from '@components/TodoApp';
+import { TodoPage } from '@pages/TodoPage';
 
 import { ThemeProvider } from './providers/theme';
 
-const App = () => {
+export const App = () => {
     return (
         <ThemeProvider>
-            <TodoApp />
+            <TodoPage />
         </ThemeProvider>
     );
 };
-
-export default App;
