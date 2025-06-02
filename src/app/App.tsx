@@ -1,4 +1,4 @@
-import { TodoPage } from '@pages/todoPage';
+import { TodoPage } from '@pages/index';
 
 import { ThemeProvider } from './providers';
 
