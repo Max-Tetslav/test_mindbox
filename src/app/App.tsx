@@ -1,6 +1,6 @@
-import { TodoPage } from '@pages/TodoPage';
+import { TodoPage } from '@pages/todoPage';
 
-import { ThemeProvider } from './providers/theme';
+import { ThemeProvider } from './providers';
 
 export const App = () => {
     return (

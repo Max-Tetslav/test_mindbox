@@ -13,10 +13,10 @@
         "baseUrl": ".",
         "paths": {
             "@app/*": ["src/app/*"],
-            "@components/*": ["src/components/*"],
-            "@entities/*": ["src/entities/*"],
-            "@hooks/*": ["src/hooks/*"],
             "@pages/*": ["src/pages/*"],
+            "@widgets/*": ["src/widgets/*"],
+            "@features/*": ["src/features/*"],
+            "@entities/*": ["src/entities/*"],
             "@shared/*": ["src/shared/*"]
         },
 

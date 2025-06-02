@@ -1,15 +1,14 @@
-import { Container, Typography, Tabs, Tab, Box } from '@mui/material';
+import { Container, Typography, Box } from '@mui/material';
 
-import { ClearButton } from '@components/ClearButton';
-import { TextInput } from '@components/TextInput';
-import { TodoList } from '@components/TodoList';
-import { TODO_TYPES } from '@entities/Todo/model/todos';
-import { useFilterTodos } from '@hooks/useFilterTodos';
-import { useManageTodoList } from '@hooks/useManageTodoList';
-import { Divider } from '@shared/ui/Divider';
+import { TODO_TYPES } from '@entities/todo/model/todo';
+import { ClearButton } from '@features/clearCompleted';
+import { FilterTabs, useFilterList } from '@features/filterTodoList';
+import { TextInput, useManageTodoList } from '@features/manageTodo';
+import { Divider } from '@shared/ui';
+import { TodoList } from '@widgets/todoList';
 
 export const TodoPage = () => {
-    const { currentFilter, isActiveTodosTab, handleFilterChange } = useFilterTodos();
+    const { currentFilter, isActiveTodosTab, handleFilterChange } = useFilterList();
     const {
         filteredTodos,
         generalTodoListLength,
@@ -32,18 +31,7 @@ export const TodoPage = () => {
                 todos
             </Typography>
             <TextInput onAddTodo={handleCreateTodo} />
-            <Tabs
-                value={currentFilter}
-                onChange={handleFilterChange}
-                variant="fullWidth"
-                textColor="primary"
-                indicatorColor="primary"
-                centered
-            >
-                <Tab label="All" value={TODO_TYPES.ALL} />
-                <Tab label="Active" value={TODO_TYPES.ACTIVE} />
-                <Tab label="Completed" value={TODO_TYPES.COMPLETED} />
-            </Tabs>
+            <FilterTabs currentFilter={currentFilter} onFilterChange={handleFilterChange} />
             <Divider />
             <Box className="listContainer">
                 <TodoList
