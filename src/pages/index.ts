@@ -1,1 +1,3 @@
-export { TodoPage } from './TodoPage';
+import { TodoPage } from './todoPage';
+
+export { TodoPage };
